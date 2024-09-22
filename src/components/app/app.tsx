@@ -17,11 +17,11 @@ import { getCookie } from '../../utils/cookie';
 import { AppHeader, Modal, IngredientDetails, OrderInfo } from '@components';
 
 import { getIngredientsList } from '../../services/slices/ingredients';
-import { getUserData } from '../../services/slices/user';
+import { getUserData, getUserName } from '../../services/slices/user';
 
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route';
-import { useDispatch } from '../../services/store';
+import { useDispatch, useSelector } from '../../services/store';
 import { useEffect } from 'react';
 
 const App = () => {
@@ -29,6 +29,7 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const background = location.state?.background;
+  const userName = useSelector(getUserName);
 
   useEffect(() => {
     dispatch(getIngredientsList());
@@ -39,12 +40,15 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <AppHeader />
+      <AppHeader userName={userName} />
       <Routes location={background || location}>
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
-        <Route path='/feed/:number' element={<OrderInfo />} />
-        <Route path='/ingredients/:id' element={<IngredientDetails />} />
+        <Route path='/feed/:number' element={<OrderInfo showHeader />} />
+        <Route
+          path='/ingredients/:id'
+          element={<IngredientDetails showHeader />}
+        />
         <Route
           path='/login'
           element={
@@ -97,7 +101,7 @@ const App = () => {
           path='/profile/orders/:number'
           element={
             <ProtectedRoute>
-              <OrderInfo />
+              <OrderInfo showHeader />
             </ProtectedRoute>
           }
         />
@@ -109,7 +113,7 @@ const App = () => {
             path='/feed/:number'
             element={
               <Modal title='' onClose={() => navigate(-1)}>
-                <OrderInfo />
+                <OrderInfo showHeader={false} />
               </Modal>
             }
           />
@@ -117,7 +121,7 @@ const App = () => {
             path='/ingredients/:id'
             element={
               <Modal title='Детали ингридиента' onClose={() => navigate(-1)}>
-                <IngredientDetails />
+                <IngredientDetails showHeader={false} />
               </Modal>
             }
           />
@@ -126,7 +130,7 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Modal title='' onClose={() => navigate(-1)}>
-                  <OrderInfo />
+                  <OrderInfo showHeader={false} />
                 </Modal>
               </ProtectedRoute>
             }

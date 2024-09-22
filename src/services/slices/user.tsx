@@ -39,6 +39,7 @@ export const userSlice = createSlice({
   selectors: {
     isAuchCheckedSelector: (state) => state.isAuchChecked,
     getUser: (state) => state.user,
+    getUserName: (state) => state.user.name,
     getError: (state) => state.error
   },
   extraReducers: (builder) => {
@@ -90,4 +91,5 @@ export const userSlice = createSlice({
   }
 });
 
-export const { isAuchCheckedSelector, getUser, getError } = userSlice.selectors;
+export const { isAuchCheckedSelector, getUser, getUserName, getError } =
+  userSlice.selectors;
