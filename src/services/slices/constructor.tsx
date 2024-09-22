@@ -41,7 +41,8 @@ export const constructorSlice = createSlice({
       );
     },
     clearAll: (state: TConstructorState) => {
-      state = initialState;
+      state.bun = initialState.bun;
+      state.ingredients = initialState.ingredients;
     },
     updateAll: (
       state: TConstructorState,
@@ -57,4 +58,4 @@ export const constructorSlice = createSlice({
 
 export const { addItem, deleteItem, clearAll, updateAll } =
   constructorSlice.actions;
-export const constructorSelector = constructorSlice.selectors;
+export const { selectItems } = constructorSlice.selectors;

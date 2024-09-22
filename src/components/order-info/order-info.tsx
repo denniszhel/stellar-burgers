@@ -10,9 +10,13 @@ import {
   userOrdersByNumber,
   getUserOrderByNumber
 } from '../../services/slices/userOrders';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export const OrderInfo: FC = () => {
+type TOrderInfo = {
+  showHeader: boolean;
+};
+
+export const OrderInfo: FC<TOrderInfo> = ({ showHeader }) => {
   const dispatch = useDispatch();
 
   const orderNumber = Number(useParams().number);
@@ -79,5 +83,5 @@ export const OrderInfo: FC = () => {
     return <Preloader />;
   }
 
-  return <OrderInfoUI orderInfo={orderInfo} />;
+  return <OrderInfoUI orderInfo={orderInfo} showHeader={showHeader} />;
 };

@@ -5,7 +5,11 @@ import { getIngredientsState } from '../../services/slices/ingredients';
 import { useSelector } from '../../services/store';
 import { useParams } from 'react-router-dom';
 
-export const IngredientDetails: FC = () => {
+type TIngredientDetails = {
+  showHeader: boolean;
+};
+
+export const IngredientDetails: FC<TIngredientDetails> = ({ showHeader }) => {
   const { ingredients } = useSelector(getIngredientsState);
   const { id } = useParams();
 
@@ -17,5 +21,10 @@ export const IngredientDetails: FC = () => {
     return <Preloader />;
   }
 
-  return <IngredientDetailsUI ingredientData={ingredientData} />;
+  return (
+    <IngredientDetailsUI
+      ingredientData={ingredientData}
+      showHeader={showHeader}
+    />
+  );
 };

@@ -4,7 +4,7 @@ import { BurgerConstructorElementProps } from './type';
 import { TConstructorIngredient } from '@utils-types';
 import { useDispatch, useSelector } from '../../services/store';
 import {
-  constructorSelector,
+  selectItems,
   deleteItem,
   updateAll
 } from '../../services/slices/constructor';
@@ -12,7 +12,7 @@ import {
 export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
   ({ ingredient, index, totalItems }) => {
     const dispatch = useDispatch();
-    const constructorItems = useSelector(constructorSelector.selectItems);
+    const constructorItems = useSelector(selectItems);
 
     const swapElements = (
       state: TConstructorIngredient[],
