@@ -17,7 +17,7 @@ type TUserOrdersState = {
   isLoading: boolean;
 };
 
-const initialState: TUserOrdersState = {
+export const initialState: TUserOrdersState = {
   orders: [],
   isLoading: false
 };
@@ -56,3 +56,4 @@ export const userOrdersSlice = createSlice({
 });
 
 export const { userOrdersList, userOrdersByNumber } = userOrdersSlice.selectors;
+export default userOrdersSlice.reducer;

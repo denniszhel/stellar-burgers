@@ -13,7 +13,7 @@ type TNewOrderState = {
   error: string | undefined;
 };
 
-const initialState: TNewOrderState = {
+export const initialState: TNewOrderState = {
   orderRequest: false,
   orderModalData: null,
   error: undefined
@@ -47,3 +47,5 @@ export const createOrderSlice = createSlice({
 export const { resetOrder } = createOrderSlice.actions;
 export const { getOrderRequest, getOrderModalData } =
   createOrderSlice.selectors;
+
+export default createOrderSlice.reducer;

@@ -23,7 +23,7 @@ type TUserState = {
   error: string | undefined;
 };
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
   isAuchChecked: false,
   user: {
     email: '',
@@ -93,3 +93,5 @@ export const userSlice = createSlice({
 
 export const { isAuchCheckedSelector, getUser, getUserName, getError } =
   userSlice.selectors;
+
+export default userSlice.reducer;
