@@ -13,7 +13,7 @@ type TIngredientsState = {
   error: string;
 };
 
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
   ingredients: [],
   loading: false,
   error: ''
@@ -51,3 +51,5 @@ export const {
   getIngredientsLoadingState,
   getIngredients
 } = ingredientsSlise.selectors;
+
+export default ingredientsSlise.reducer;
